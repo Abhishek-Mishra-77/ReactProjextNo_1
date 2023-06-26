@@ -61,15 +61,15 @@ const TextForm = (props) => {
 
     return (
         <>
-            <div className="container" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
+            <div className="container" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
                 <h1>{props.heading}</h1>
                 <div className="mb-3 col-sm-15">
-                    <textarea className="form-control "
+                    <textarea className="form-control"
                         id="myBox"
-                        rows="10"
+                        rows="7"
                         style={{
                             backgroundColor: props.mode === 'dark' ? 'grey' : 'white',
-                            color: props.mode === 'dark' ? 'white' : 'black'
+                            color: props.mode === 'dark' ? 'white' : '#042743'
                         }}
                         value={text}
                         onChange={handlerOnChange}
