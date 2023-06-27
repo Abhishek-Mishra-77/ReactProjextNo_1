@@ -10,6 +10,7 @@ const TextForm = (props) => {
         setText('You have clicked on handleUpClick')
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert('Converted to uppercase!', 'success')
     }
 
 
@@ -18,12 +19,14 @@ const TextForm = (props) => {
         setText('You have clicked on handleUpClick')
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert('Converted to lowercase!', 'success')
     }
 
 
     // Change into Clear All Text
     const handleClearClick = () => {
         setText('');
+        props.showAlert('Text clear!', 'success')
     }
 
 
@@ -31,6 +34,7 @@ const TextForm = (props) => {
     const handleReverseClick = () => {
         let newText = text.split('').reverse().join("");
         setText(newText);
+        props.showAlert('Converted to reverse order!', 'success')
     }
 
 
@@ -44,18 +48,21 @@ const TextForm = (props) => {
         let text = document.getElementById('myBox');
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert('Copied text!', 'success')
     }
 
     // It Remove Extra spaces
     const handleRemoveSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert('Extra spaces get removed!', 'success')
     }
 
     // For Selecting all text
     const handleSelectText = () => {
         let text = document.getElementById('myBox');
         text.select();
+        props.showAlert('Text selected!', 'success')
     }
 
 
