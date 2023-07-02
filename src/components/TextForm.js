@@ -48,6 +48,7 @@ const TextForm = (props) => {
         let text = document.getElementById('myBox');
         text.select();
         navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges()
         props.showAlert('Copied text!', 'success')
     }
 
@@ -69,13 +70,13 @@ const TextForm = (props) => {
     return (
         <>
             <div className="container" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
-                <h1>{props.heading}</h1>
+                <h3 className="my-2 mb-4">{props.heading}</h3>
                 <div className="mb-3 col-sm-15">
                     <textarea className="form-control"
                         id="myBox"
                         rows="7"
                         style={{
-                            backgroundColor: props.mode === 'dark' ? 'grey' : 'white',
+                            backgroundColor: props.mode === 'dark' ? '#13466e' : 'white',
                             color: props.mode === 'dark' ? 'white' : '#042743'
                         }}
                         value={text}
@@ -84,22 +85,22 @@ const TextForm = (props) => {
                     ></textarea>
                 </div>
                 <div className="my-3">
-                    <button className="btn btn-primary mx-1" onClick={handleUpperClick}>Convert to Uppercase</button>
-                    <button className="btn btn-primary mx-1" onClick={handleLowerClick}>Convert to LowerCase</button>
-                    <button className="btn btn-primary mx-1" onClick={handleClearClick}>Clear All</button>
-                    <button className="btn btn-primary mx-1" onClick={handleReverseClick}>Reverse All</button>
-                    <button className="btn btn-primary mx-1" onClick={handleCopyText}>Copy Text</button>
-                    <button className="btn btn-primary mx-1" onClick={handleRemoveSpaces}>Remove Extra spaces</button>
-                    <button className="btn btn-primary mx-1" onClick={handleSelectText}>Select Text</button>
+                    <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpperClick}>Convert to Uppercase</button>
+                    <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLowerClick}>Convert to LowerCase</button>
+                    <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>Clear All</button>
+                    <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleReverseClick}>Reverse All</button>
+                    <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopyText}>Copy Text</button>
+                    <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleRemoveSpaces}>Remove Extra spaces</button>
+                    <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleSelectText}>Select Text</button>
                 </div>
             </div>
 
             <div className="container my-2" style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>
                 <h2>Your text summary</h2>
-                <p> {text.length === 0 ? 0 : text.split(" ").length} words And {text.length} chracters</p>
-                <p> {0.008 * text.split(" ").length} Minutes read</p>
+                <p> {text.split(/\s+/   ).filter((ele) => { return ele.length !== 0 }).length} words And {text.length} chracters</p>
+                <p> {0.008 * text.split(" ").filter((ele) => { return ele.length !== 0 }).length} Minutes read</p>
                 <h1>Preview</h1>
-                <p>{text.trim().length > 0 ? text : "Enter something to preview it here"}</p>
+                <p>{text.trim().length > 0 ? text : "Nothing to preview"}</p>
             </div>
 
         </>

@@ -20,7 +20,6 @@ function App() {
 
 
   // Show Alert in the browser
-
   const showAlert = (message, type) => {
     setAlert({
       msg: message,
@@ -29,24 +28,26 @@ function App() {
 
     setTimeout(() => {
       setAlert(null);
-    }, 3000)
+    }, 4000)
 
   }
 
+  // Change color background along with toggle button wchich use to change background color and text color
 
-
+  
   const toggleMode = () => {
+
     if (mode === 'light') {
       setMode('dark')
       document.body.style.backgroundColor = '#042743'
       showAlert('Dark mode has been enable', 'success');
-      document.title = 'TextUtils - Dark Mode';
+      // document.title = 'TextUtils - Dark Mode';
     }
     else {
       setMode('light')
       document.body.style.backgroundColor = 'white'
       showAlert('Light mode has been enable', 'success');
-      document.title = 'TextUtils - Light Mode';
+      // document.title = 'TextUtils - Light Mode';
     }
   }
 
@@ -61,8 +62,8 @@ function App() {
         <div className="container my-5">
         </div >
         <Routes>
-          <Route  path="/about" element={<About></About>} />
-          <Route  path="/" element={<TextForm heading="Enter the text to analyze below" mode={mode} showAlert={showAlert}></TextForm>} />
+          <Route path="/about" element={<About mode={mode} />} />
+          <Route path="/" element={<TextForm heading="Try TextUtils - Word counter , Character counter , Remove extra spaces" mode={mode} showAlert={showAlert}></TextForm>} />
         </Routes>
       </Router>
     </>
